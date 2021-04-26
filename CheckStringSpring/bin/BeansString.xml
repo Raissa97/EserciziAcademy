@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:aop="http://www.springframework.org/schema/aop"   
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd   
+       http://www.springframework.org/schema/aop   
+       http://www.springframework.org/schema/aop/spring-aop.xsd">  
+       
+<!-- creazione di un CheckString -->
+	<bean id = "abstract1" class = "handlers.CheckStringHandler" abstract="true">
+	</bean>  
+<!-- creazione di istanze EditDistance -->
+	<bean id = "ed3" class = "handlers.EditDistance3" parent="abstract1">
+   		<property name = "sogliaMax" value ="3"/>
+		<constructor-arg name = "next"><null/></constructor-arg>
+	</bean>
+	<bean id = "ed2" class = "handlers.EditDistance2" parent="abstract1">
+		<property name = "sogliaMax" value ="2"/>
+		<constructor-arg name = "next" ref="ed3"/>
+	</bean>	
+	<bean id = "ed1" class = "handlers.EditDistance1" parent="abstract1">
+   		<property name = "sogliaMax" value ="1"/>
+		<constructor-arg name = "next" ref="ed2"/>
+	</bean>
+	
+<!-- creazione di istanze contains -->
+	<bean id = "c2" class = "handlers.IsContained" scope="prototype">
+		<constructor-arg name = "next"><null/></constructor-arg>
+	</bean>
+	<bean id = "c1" class = "handlers.Contains" scope="prototype">
+		<constructor-arg name = "next" ref="c2"/>
+	</bean>
+	
+  </beans>
