@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name = "com.corso.corrispondenze.Corrispondenza" table = "corrispondenze">
+	  <id name = "parolaInserita" type = "string" column = "parola_inserita">
+	     <generator class="assigned"/>
+	  </id>
+	  <property name = "codiceAlgo" column = "algo_id" type = "string"/>
+	  <property name = "numCercata" column = "num_trovata" type = "int"/>
+	  <many-to-one name = "paese" column = "paese_id" class="com.corso.paesi.Paese" cascade="update"/>
+   </class>
+</hibernate-mapping>

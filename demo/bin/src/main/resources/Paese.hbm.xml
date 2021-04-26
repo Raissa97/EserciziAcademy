@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "com.corso.paesi.Paese" table = "paesi">
+      <id name = "codice" type = "string" column = "alpha">
+         <generator class="assigned"/> <!-- vuol dire che lo assegnamo noi nel DAO, se fosse native lo inserirebbe il db di default -->
+      </id>
+      <property name = "nome" column = "name" type = "string"/>
+   </class>
+</hibernate-mapping>
